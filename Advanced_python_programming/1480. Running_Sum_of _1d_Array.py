@@ -12,8 +12,8 @@ class Solution:
 if __name__ == "__main__":
     nums = [1, 2, 3, 4]
 
-    sol = Solution()
-    result = sol.runningSum(nums)
+    # sol = Solution()
+    result = Solution().runningSum(nums)
 
     print("Input:", nums)
     print("Running Sum:", result)
