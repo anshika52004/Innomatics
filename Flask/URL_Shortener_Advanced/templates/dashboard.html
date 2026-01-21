@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2>URL Shortener</h2>
+<a href="/logout" class="btn btn-danger btn-sm mb-3">Logout</a>
+
+<form method="POST">
+    <input class="form-control mb-2" name="original_url" placeholder="Enter URL" required>
+    <button class="btn btn-primary">Shorten URL</button>
+</form>
+
+{% if short_url %}
+<hr>
+<input class="form-control" id="shortUrl" value="{{ short_url }}" readonly>
+<button class="btn btn-success mt-2" onclick="copy()">Copy</button>
+{% endif %}
+
+<hr>
+<h4>Your URLs</h4>
+<ul class="list-group">
+{% for u in urls %}
+<li class="list-group-item">
+    {{ u.original_url }} → 
+    <a href="/{{ u.short_code }}" target="_blank">{{ request.host_url }}{{ u.short_code }}</a>
+</li>
+{% endfor %}
+</ul>
+
+<script>
+function copy() {
+    let x = document.getElementById("shortUrl");
+    x.select();
+    document.execCommand("copy");
+    alert("Copied!");
+}
+</script>
+
+{% endblock %}
